@@ -6,7 +6,7 @@
 /*   By: rode-lim <rode-lim@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:27:04 by rode-lim          #+#    #+#             */
-/*   Updated: 2024/09/13 16:27:05 by rode-lim         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:28:52 by rode-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int	ft_isdigit(int i)
 {
 	if (i >= '0' && i <= '9')
-	{
 		return (1);
-	}
 	return (0);
 }
 
@@ -58,9 +56,7 @@ int	ft_atoi(char *str)
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-		{
 			neg *= -1;
-		}
 		i++;
 	}
 	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
