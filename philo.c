@@ -1,43 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rode-lim <rode-lim@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/13 16:21:43 by rode-lim          #+#    #+#             */
+/*   Updated: 2024/09/13 16:27:22 by rode-lim         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-int	ft_isdigit(int c)
+void	free_all(t_general *general)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	free(general->philo);
+	free(general->forks);
 }
 
-int	check_is_number(char **av)
+void	destroy_mutex(t_general *general)
 {
 	int	i;
-	int	j;
 
-	i = 1;
-	while (av[i])
+	i = 0;
+	while (i > general->philos_nbr)
 	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (ft_isdigit(av[i][j]) == 1)
-				j++;
-			else if (av[i][j] == '-' || av[i][j] == ' ')
-				return (0);
-			else
-				return (0);
-		}
+		pthread_mutex_destroy(&general->philo[i].can_die);
+		pthread_mutex_destroy(&general->forks[i]);
+		pthread_mutex_destroy(&general->helper_mutex);
+		pthread_mutex_destroy(&general->print);
 		i++;
-	}
-	return (1);
-}
-
-int	valid_arguments(int ac, char **av)
-{
-	if((ac == 5 || ac == 6) && check_is_number(av))
-		return (1);
-	else
-	{
-		write(2, "Error: invalid arguments\n", 26);
-		return (0);
 	}
 }
 
@@ -46,5 +38,14 @@ int	main(int ac, char **av)
 	t_general	general;
 
 	if (valid_arguments(ac, av))
-	{}
+	{
+		if (init_arguments(&general, ac, av) == 0)
+			return (printf("Error Arguments\nEx: ./philo 1 60 60 60 '1'\n"));
+		init_philos(&general);
+		start_threads(&general);
+		destroy_mutex(&general);
+		free_all(&general);
+	}
+	else
+		printf("Error Arguments\nEx: ./philo 1 60 60 60 '1'\n");
 }
