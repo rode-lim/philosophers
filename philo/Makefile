@@ -1,31 +1,52 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rode-lim <rode-lim@student.42lisboa.com    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/13 19:14:54 by rode-lim          #+#    #+#              #
+#    Updated: 2024/09/16 15:23:36 by rode-lim         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-NAME			=	philo
+NAME 		= philo
+CC 			= cc
+CFLAGS    	= -Wall -Wextra -Werror -g -pthread
 
-FILES	=	philo.c				\
-			check_arguments.c	\
-			init.c				\
-			routine.c			\
-			supervisor.c		\
-			philo_status.c		\
+SRC_DIR		= src/
+OBJ_DIR		= obj
 
+MAIN 		= src/main.c \
+			  src/error_check.c \
+			  src/utils.c \
+			  src/init.c  \
+			  src/init_threads.c \
+			  src/routine.c \
+			  src/monitor.c \
+			  src/norm.c
 
-OBJS		=	$(FILES:.c=.o)
+SOURCE = $(MAIN)
+		  
+OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(MAIN))
 
-RM	= rm -f
+all: $(OBJ_DIR) $(NAME)
 
-CC	= cc
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-CFLAGS	= -Wall -Wextra -Werror -pthread -g -fsanitize=thread
+$(NAME): $(LIBFT) $(OBJ)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-
-all: $(NAME)
-
-$(NAME):	$(OBJS)
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c
+	@$(CC) -c $< -o $@
 
 clean:
-		$(RM) $(OBJS)
+	rm -rf $(OBJ_DIR)
 
-fclean:		clean
-		$(RM) $(NAME)
-re:		fclean all
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re run
