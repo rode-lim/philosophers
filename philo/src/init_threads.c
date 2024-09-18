@@ -1,4 +1,4 @@
-	 /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init_threads.c                                     :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: rode-lim <rode-lim@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:14:11 by rode-lim          #+#    #+#             */
-/*   Updated: 2024/09/13 19:14:12 by rode-lim         ###   ########.fr       */
+/*   Updated: 2024/09/18 20:41:07 by rode-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	create_thread(t_data *data, pthread_mutex_t *forks)
 		destroy_mutex(data, forks, TH_ERR);
 	while (i < data->philos_num)
 	{
-		if (pthread_create(&data->philosopher[i].thread, NULL, &routine, 
+		if (pthread_create(&data->philosopher[i].thread, NULL, &routine,
 				&data->philosopher[i]) != 0)
 			destroy_mutex(data, forks, TH_ERR);
 		i++;

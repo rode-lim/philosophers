@@ -6,7 +6,7 @@
 /*   By: rode-lim <rode-lim@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:14:04 by rode-lim          #+#    #+#             */
-/*   Updated: 2024/09/13 19:14:05 by rode-lim         ###   ########.fr       */
+/*   Updated: 2024/09/18 20:40:28 by rode-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	check_content(char *argv)
 /*Function that checks if all the arguments are valid*/
 int	check_all_args(char **argv)
 {
-	if ((ft_atoi(argv[1]) < 0 || ft_atoi(argv[1]) > 250) || 
-		check_content(argv[2]) == 1)
+	if ((ft_atoi(argv[1]) < 0 || ft_atoi(argv[1]) > 250)
+		|| check_content(argv[2]) == 1)
 		return (write(2, ERROR_2, 23), 1);
 	if ((ft_atoi(argv[2]) < 0) || check_content(argv[2]) == 1)
 		return (write(2, ERROR_2, 23), 1);

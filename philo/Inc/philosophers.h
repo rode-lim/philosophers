@@ -6,7 +6,7 @@
 /*   By: rode-lim <rode-lim@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:13:54 by rode-lim          #+#    #+#             */
-/*   Updated: 2024/09/16 16:42:16 by rode-lim         ###   ########.fr       */
+/*   Updated: 2024/09/18 20:39:17 by rode-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	ft_cleanse(t_philo *philo, t_data *data);
 
 //utils.c
 time_t	get_current_time(void);
-int	ft_usleep(time_t milliseconds);
+int		ft_usleep(time_t milliseconds);
 int		ft_atoi(const char *nptr);
 void	destroy_mutex(t_data *data, pthread_mutex_t *forks, char *message);
 

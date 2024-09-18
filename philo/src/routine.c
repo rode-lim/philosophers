@@ -6,7 +6,7 @@
 /*   By: rode-lim <rode-lim@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:14:38 by rode-lim          #+#    #+#             */
-/*   Updated: 2024/09/18 11:47:12 by rode-lim         ###   ########.fr       */
+/*   Updated: 2024/09/18 20:41:45 by rode-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	eating(t_philo *philo, t_data *data)
 		pthread_mutex_unlock(philo->right_fork);
 		return ;
 	}
-	if (philo->id % 2 != 0) 
+	if (philo->id % 2 != 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
 		message(philo, philo->id, TAKE_FORK);
 		pthread_mutex_lock(philo->right_fork);
 		message(philo, philo->id, TAKE_FORK);
 	}
-	else 
+	else
 	{
 		pthread_mutex_lock(philo->right_fork);
 		message(philo, philo->id, TAKE_FORK);
