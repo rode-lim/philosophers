@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+	 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init_threads.c                                     :+:      :+:    :+:   */
@@ -12,14 +12,14 @@
 
 #include "../Inc/philosophers.h"
 
-//Criar um observer para monitorizar o programa inteiro
+//Create an overseer that will watch over the program.
 int	create_thread(t_data *data, pthread_mutex_t *forks)
 {
 	int			i;
-	pthread_t	god;
+	pthread_t	hero;
 
 	i = 0;
-	if (pthread_create(&god, NULL, &monitor, data->philosopher) != 0)
+	if (pthread_create(&hero, NULL, &monitor, data->philosopher) != 0)
 		destroy_mutex(data, forks, TH_ERR);
 	while (i < data->philos_num)
 	{
@@ -29,7 +29,7 @@ int	create_thread(t_data *data, pthread_mutex_t *forks)
 		i++;
 	}
 	i = 0;
-	if (pthread_join(god, NULL) != 0)
+	if (pthread_join(hero, NULL) != 0)
 		destroy_mutex(data, forks, JOIN_ERR);
 	while (i < data->philos_num)
 	{

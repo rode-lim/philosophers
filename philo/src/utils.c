@@ -6,13 +6,13 @@
 /*   By: rode-lim <rode-lim@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 19:14:44 by rode-lim          #+#    #+#             */
-/*   Updated: 2024/09/13 19:14:45 by rode-lim         ###   ########.fr       */
+/*   Updated: 2024/09/18 12:00:59 by rode-lim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Inc/philosophers.h"
 
-// Vai buscar o tempo atual em milisegundos
+// Gets the current time in milliseconds.
 time_t	get_current_time(void)
 {
 	struct timeval		tv;
